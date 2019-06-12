@@ -1,0 +1,45 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+<dom-module id="home-main">
+  <template>
+    <style>
+      :host {
+        display: block;
+        font-family: 'Roboto', sans-serif;
+      } .page {
+      	margin: 150px 50px 20px;
+      }
+    </style>
+
+    <body>
+
+      <div class="page">
+        <h1>Welkom terug!</h1><br>
+        <h2>Maak een keuze in de menubalk om te beginnen!</h2>
+      </div>
+
+    </body>
+
+  </template>
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+     class HomeMain extends Polymer.Element {
+       static get is() { return 'home-main'; }
+       static get properties() {
+         return {
+           prop1: {
+             type: String,
+             value: 'home-main'
+           }
+         };
+       }
+     }
+
+     window.customElements.define(HomeMain.is, HomeMain);
+   </script>
+   </dom-module>

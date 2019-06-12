@@ -1,0 +1,113 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+<dom-module id="tafel-toevoegen-main">
+  <template>
+    <style>
+      :host {
+        display: block;
+        font-family: 'Roboto', sans-serif;
+        color: white;
+      } .page {
+      	margin: 150px 4% 20px;
+      } #kolom1 {
+        width: 45%;
+        float: left;
+        background-color: #a1cbdd;
+        border: 4px solid #5997ac;
+        padding: 10px;
+      } #kolom2 {
+        width: 45%;
+        float: right;
+        background-color: #a1cbdd;
+        border: 4px solid #5997ac;
+        padding: 10px;
+      } legend {
+        font-size:25px;
+      } paper-button {
+        margin: 5px;
+        background-color: #5997ac;
+        border: 2px solid #5997ac;
+        padding: 2px;
+      }
+
+    </style>
+
+    <body>
+      <div class="page">
+        <h1 style="color:#5997ac">Tafel Toevoegen</h1>
+          <div id="kolom1">
+              <legend>Tafel Invoeren </legend>
+              <br>
+                <label for="tafNumInvoer"> Nummer: </label>
+                <paper-input label="Voer hier het tafelnummer in." id="tafNumInvoer" value= "{{nummer}}" type="number"></paper-input><br/>
+                <label for="tafBeschInvoer"> Beschrijving: </label>
+                <paper-input label="Voer hier de beschrijving van de tafel in." id="tafBeschInvoer" value="{{beschrijving}}"></paper-input><br/>
+                <paper-button raised on-click="tafelToevoegen">Toevoegen</paper-button>
+                <paper-button raised on-click="reset">Reset</paper-button>
+          </div>
+          <div id="kolom2">
+              <legend>Toegevoegde tafels</legend>
+                <ol>
+                  <template is="dom-repeat" items="{{tafels}}" as="tafel">
+                    [[tafel.nummer]] &emsp; - &emsp;[[tafel.beschrijving]] <br> <br>
+                  </template>
+                </ol>
+          </div>
+      </div>
+    </body>
+    <app-localstorage-document key="tafels" data="{{tafels}}"></app-localstorage-document>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+     class ToevoegenMain extends Polymer.Element {
+       static get is() { return 'tafel-toevoegen-main'; }
+       static get properties() {
+         return {
+           prop1: {
+             type: String,
+             value: 'tafel-toevoegen-main'
+           },
+           tafels: {
+             type: Array,
+             value: []
+           },
+           tafel: {
+             type: Object
+           },
+           nummer: {
+             type: String
+           },
+           beschrijving: {
+             type: String
+           },
+           beschikbaarheid: {
+             type: String
+           }
+         };
+       }
+
+       tafelToevoegen() {
+         if (!this.nummer || !this.beschrijving) {
+           alert("Vul alstublieft een tafelnummer en beschrijving in.");
+         } else {
+           this.push('tafels', {nummer:this.nummer, beschrijving:this.beschrijving, beschikbaarheid:'Vrij'} );
+         }
+       }
+
+       reset() {
+        this.nummer = "";
+        this.beschrijving = "";
+       }
+     }
+
+     window.customElements.define(ToevoegenMain.is, ToevoegenMain);
+   </script>
+   </dom-module>

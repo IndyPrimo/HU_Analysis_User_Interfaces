@@ -1,0 +1,77 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+<dom-module id="header-element">
+  <template>
+    <style>
+      :host {
+        align-items: flex-end;
+      	justify-content: space-between;
+      	flex-direction: row;
+      	display: flex;
+      	position: fixed;
+      	top: 0;
+      	height: 120px;
+      	left: 0;
+      	right: 0;
+      	background-color: #f7aec2;
+      	border-bottom: 7px solid #af5166;
+        font-family: 'Roboto', sans-serif;
+        color: #5997ac;
+      }
+
+      .nav-buttons {
+          list-style-type: none;
+          padding: 0px;
+          margin:0px 0px 0px 0px;
+          display: flex;
+          flex-direction: row;
+       } .nav-buttons li {
+       	 display: inline;
+       	 text-align: center;
+       } .nav-buttons li a {
+         background-color: #eeede7;
+         border:2px solid white;
+         border-bottom-width: 0px;
+         border-left-width: 0px;
+         margin:0px;
+         padding: 10px 20px;
+         font-weight: 600;
+         text-decoration: none;
+         height:38px;
+         width:130px;
+         display: block;
+      }
+    </style>
+
+    <header>
+      <ul class="nav-buttons">
+        <li> <a href="index.html">Home</a> </li>
+  			<li> <a href="tafel-toevoegen.html">Tafel Toevoegen</a> </li>
+  			<li> <a href="tafel-verwijderen.html">Tafel Verwijderen</a> </li>
+  			<li> <a href="tafel-beschikbaarheid.html">Tafel beschikbaarheid</a> </li>
+        <li> <a href="tafel-overzicht.html">Tafel Overzicht</a> </li>
+		  </ul>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class HeaderElement extends Polymer.Element {
+      static get is() { return 'header-element'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'header-element'
+          },
+        };
+      }
+    }
+
+    window.customElements.define(HeaderElement.is, HeaderElement);
+  </script>
+</dom-module>
